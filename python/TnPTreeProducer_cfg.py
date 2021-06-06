@@ -113,35 +113,36 @@ else:
 #################################################
 # Settings for trigger tag and probe measurement
 #################################################
-if '2016' in options['era']:
-  options['TnPPATHS']           = cms.vstring("HLT_Ele27_eta2p1_WPTight_Gsf_v*","HLT_DoublePhoton60")
-  options['TnPHLTTagFilters']   = cms.vstring("hltEle27erWPTightGsfTrackIsoFilter","hltEG60HEFilter")
-  options['TnPHLTProbeFilters'] = cms.vstring()
-  options['HLTFILTERSTOMEASURE']= {
-              "passHltEle27Photon60" : cms.vstring("hltEle27WPTightGsfTrackIsoFilter","hltEG60HEFilter"),
-              "passHltEle27"         : cms.vstring("hltEle27WPTightGsfTrackIsoFilter"),
-              "passHltPhoton60"      : cms.vstring("hltEG60HEFilter")
-              }
+if not options['isMC']:
+  if '2016' in options['era']:
+    options['TnPPATHS']           = cms.vstring("HLT_Ele27_eta2p1_WPTight_Gsf_v*")
+    options['TnPHLTTagFilters']   = cms.vstring("hltEle27erWPTightGsfTrackIsoFilter")
+    options['TnPHLTProbeFilters'] = cms.vstring()
+    options['HLTFILTERSTOMEASURE']= {
+      "passHltEle27"         : cms.vstring("hltEle27WPTightGsfTrackIsoFilter")
+    }
   
-elif '2017' in options['era']:
-  options['TnPPATHS']           = cms.vstring("HLT_Ele35_WPTight_Gsf_v*","HLT_DoublePhoton70")
-  options['TnPHLTTagFilters']   = cms.vstring("hltEle35noerWPTightGsfTrackIsoFilter","hltEG70HEFilter")
-  options['TnPHLTProbeFilters'] = cms.vstring()
-  options['HLTFILTERSTOMEASURE']= {
-              "passHltEle35Photon70" : cms.vstring("hltEle35noerWPTightGsfTrackIsoFilter","hltEG70HEFilter"),
-              "passHltEle35"         : cms.vstring("hltEle35noerWPTightGsfTrackIsoFilter"),
-              "passHltPhoton70"      : cms.vstring("hltEG70HEFilter")
-              }
+  elif '2017' in options['era']:
+    options['TnPPATHS']           = cms.vstring("HLT_Ele35_WPTight_Gsf_v*")
+    options['TnPHLTTagFilters']   = cms.vstring("hltEle35noerWPTightGsfTrackIsoFilter")
+    options['TnPHLTProbeFilters'] = cms.vstring()
+    options['HLTFILTERSTOMEASURE']= {
+      "passHltEle35"         : cms.vstring("hltEle35noerWPTightGsfTrackIsoFilter")
+    }
 
-elif '2018'  in options['era']:
-  options['TnPPATHS']           = cms.vstring("HLT_Ele32_WPTight_Gsf_v*","HLT_Photon70_v*")
-  options['TnPHLTTagFilters']   = cms.vstring("hltEle32WPTightGsfTrackIsoFilter","hltEG70HEFilter")
+  elif '2018'  in options['era']:
+    options['TnPPATHS']           = cms.vstring("HLT_Ele32_WPTight_Gsf_v*")
+    options['TnPHLTTagFilters']   = cms.vstring("hltEle32WPTightGsfTrackIsoFilter")
+    options['TnPHLTProbeFilters'] = cms.vstring()
+    options['HLTFILTERSTOMEASURE']= {
+      "passHltEle32"         : cms.vstring("hltEle32WPTightGsfTrackIsoFilter")
+    }
+else:
+  options['TnPPATHS']           = cms.vstring()
+  options['TnPHLTTagFilters']   = cms.vstring()
   options['TnPHLTProbeFilters'] = cms.vstring()
-  options['HLTFILTERSTOMEASURE']= {
-              "passHltEle32Photon70" : cms.vstring("hltEle32WPTightGsfTrackIsoFilter","hltEG70HEFilter"),
-              "passHltEle32"         : cms.vstring("hltEle32WPTightGsfTrackIsoFilter"),
-              "passHltPhoton70"      : cms.vstring("hltEG70HEFilter")
-              }
+  options['HLTFILTERSTOMEASURE']= {}
+  
 
 # Apply L1 matching (using L1Threshold) when flag contains "L1match" in name
 options['ApplyL1Matching']      = any(['L1match' in flag for flag in options['HLTFILTERSTOMEASURE'].keys()])
