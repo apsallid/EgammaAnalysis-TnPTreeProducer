@@ -35,7 +35,7 @@ def setTagsProbes(process, options):
                                         bits        = cms.InputTag('TriggerResults::' + options['HLTProcessName']),
                                         objects     = cms.InputTag(hltObjects),
                                         dR          = cms.double(0.3),
-                                        isAND       = cms.bool(True)
+                                        isAND       = cms.bool(False)
                                     )
 
     ##################### PROBE ELECTRONs ###########################
@@ -75,7 +75,7 @@ def setTagsProbes(process, options):
                                         bits        = cms.InputTag('TriggerResults::' + options['HLTProcessName'] ),
                                         objects     = cms.InputTag(hltObjects),
                                         dR          = cms.double(0.3),
-                                        isAND       = cms.bool(True)
+                                        isAND       = cms.bool(False)
                                         )
     if options['useAOD'] : process.probePho = process.goodPhotons.clone()
 
@@ -86,7 +86,7 @@ def setTagsProbes(process, options):
                                              bits         = cms.InputTag('TriggerResults::' + options['HLTProcessName']),
                                              objects      = cms.InputTag(hltObjects),
                                              dR           = cms.double(0.3),
-                                             isAND        = cms.bool(True)
+                                             isAND        = cms.bool(False)
                                         )
 
     process.probeSCEle = cms.EDProducer( SCEleMatcher,
@@ -124,7 +124,7 @@ def setTagsProbes(process, options):
 
 
     ########################### TnP pairs ############################
-    masscut = cms.string("50<mass<130")
+    masscut = cms.string("70<mass<110")
     process.tnpPairingEleHLT   = cms.EDProducer("CandViewShallowCloneCombiner",
                                         decay = cms.string("tagEle@+ probeEle@-"),
                                         checkCharge = cms.bool(True),
