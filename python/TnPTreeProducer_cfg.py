@@ -114,38 +114,34 @@ else:
 # Settings for trigger tag and probe measurement
 #################################################
 if '2016' in options['era']:
-  options['TnPPATHS']           = cms.vstring("HLT_Ele27_eta2p1_WPTight_Gsf_v*")
-  options['TnPHLTTagFilters']   = cms.vstring("hltEle27erWPTightGsfTrackIsoFilter")
+  options['TnPPATHS']           = cms.vstring("HLT_Ele27_eta2p1_WPTight_Gsf_v*","HLT_DoublePhoton60")
+  options['TnPHLTTagFilters']   = cms.vstring("hltEle27erWPTightGsfTrackIsoFilter","hltEG60HEFilter")
   options['TnPHLTProbeFilters'] = cms.vstring()
-  options['HLTFILTERSTOMEASURE']= {"passHltEle27WPTightGsf" :                           cms.vstring("hltEle27WPTightGsfTrackIsoFilter"),
-                                   "passHltEle23Ele12CaloIdLTrackIdLIsoVLLeg1L1match" : cms.vstring("hltEle23Ele12CaloIdLTrackIdLIsoVLTrackIsoLeg1Filter"),
-                                   "passHltEle23Ele12CaloIdLTrackIdLIsoVLLeg2" :        cms.vstring("hltEle23Ele12CaloIdLTrackIdLIsoVLTrackIsoLeg2Filter"),
-                                   "passHltDoubleEle33CaloIdLMWSeedLegL1match" :        cms.vstring("hltEG33CaloIdLMWPMS2Filter"),
-                                   "passHltDoubleEle33CaloIdLMWUnsLeg" :                cms.vstring("hltDiEle33CaloIdLMWPMS2UnseededFilter"),
-                                  } # Some examples, you can add multiple filters (or OR's of filters, note the vstring) here, each of them will be added to the tuple
-
+  options['HLTFILTERSTOMEASURE']= {
+              "passHltEle27Photon60" : cms.vstring("hltEle27WPTightGsfTrackIsoFilter","hltEG60HEFilter"),
+              "passHltEle27"         : cms.vstring("hltEle27WPTightGsfTrackIsoFilter"),
+              "passHltPhoton60"      : cms.vstring("hltEG60HEFilter")
+              }
+  
 elif '2017' in options['era']:
-  options['TnPPATHS']           = cms.vstring("HLT_Ele32_WPTight_Gsf_L1DoubleEG_v*")
-  options['TnPHLTTagFilters']   = cms.vstring("hltEle32L1DoubleEGWPTightGsfTrackIsoFilter","hltEGL1SingleEGOrFilter")
+  options['TnPPATHS']           = cms.vstring("HLT_Ele35_WPTight_Gsf_v*","HLT_DoublePhoton70")
+  options['TnPHLTTagFilters']   = cms.vstring("hltEle35noerWPTightGsfTrackIsoFilter","hltEG70HEFilter")
   options['TnPHLTProbeFilters'] = cms.vstring()
-  options['HLTFILTERSTOMEASURE']= {"passHltEle32DoubleEGWPTightGsf" :                   cms.vstring("hltEle32L1DoubleEGWPTightGsfTrackIsoFilter"),
-                                   "passEGL1SingleEGOr" :                               cms.vstring("hltEGL1SingleEGOrFilter"),
-                                   "passHltEle23Ele12CaloIdLTrackIdLIsoVLLeg1L1match" : cms.vstring("hltEle23Ele12CaloIdLTrackIdLIsoVLTrackIsoLeg1Filter"),
-                                   "passHltEle23Ele12CaloIdLTrackIdLIsoVLLeg2" :        cms.vstring("hltEle23Ele12CaloIdLTrackIdLIsoVLTrackIsoLeg2Filter"),
-                                   "passHltDoubleEle33CaloIdLMWSeedLegL1match" :        cms.vstring("hltEle33CaloIdLMWPMS2Filter"),
-                                   "passHltDoubleEle33CaloIdLMWUnsLeg" :                cms.vstring("hltDiEle33CaloIdLMWPMS2UnseededFilter"),
-                                  }
+  options['HLTFILTERSTOMEASURE']= {
+              "passHltEle35Photon70" : cms.vstring("hltEle35noerWPTightGsfTrackIsoFilter","hltEG70HEFilter"),
+              "passHltEle35"         : cms.vstring("hltEle35noerWPTightGsfTrackIsoFilter"),
+              "passHltPhoton70"      : cms.vstring("hltEG70HEFilter")
+              }
 
 elif '2018'  in options['era']:
-  options['TnPPATHS']           = cms.vstring("HLT_Ele32_WPTight_Gsf_v*")
-  options['TnPHLTTagFilters']   = cms.vstring("hltEle32WPTightGsfTrackIsoFilter")
+  options['TnPPATHS']           = cms.vstring("HLT_Ele32_WPTight_Gsf_v*","HLT_Photon70_v*")
+  options['TnPHLTTagFilters']   = cms.vstring("hltEle32WPTightGsfTrackIsoFilter","hltEG70HEFilter")
   options['TnPHLTProbeFilters'] = cms.vstring()
-  options['HLTFILTERSTOMEASURE']= {"passHltEle32WPTightGsf" :                           cms.vstring("hltEle32WPTightGsfTrackIsoFilter"),
-                                   "passHltEle23Ele12CaloIdLTrackIdLIsoVLLeg1L1match" : cms.vstring("hltEle23Ele12CaloIdLTrackIdLIsoVLTrackIsoLeg1Filter"),
-                                   "passHltEle23Ele12CaloIdLTrackIdLIsoVLLeg2" :        cms.vstring("hltEle23Ele12CaloIdLTrackIdLIsoVLTrackIsoLeg2Filter"),
-                                   "passHltDoubleEle33CaloIdLMWSeedLegL1match" :        cms.vstring("hltEle33CaloIdLMWPMS2Filter"),
-                                   "passHltDoubleEle33CaloIdLMWUnsLeg" :                cms.vstring("hltDiEle33CaloIdLMWPMS2UnseededFilter"),
-                                  }
+  options['HLTFILTERSTOMEASURE']= {
+              "passHltEle32Photon70" : cms.vstring("hltEle32WPTightGsfTrackIsoFilter","hltEG70HEFilter"),
+              "passHltEle32"         : cms.vstring("hltEle32WPTightGsfTrackIsoFilter"),
+              "passHltPhoton70"      : cms.vstring("hltEG70HEFilter")
+              }
 
 # Apply L1 matching (using L1Threshold) when flag contains "L1match" in name
 options['ApplyL1Matching']      = any(['L1match' in flag for flag in options['HLTFILTERSTOMEASURE'].keys()])
