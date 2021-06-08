@@ -72,10 +72,12 @@ options['era']                  = varOptions.era
 options['ELECTRON_COLL']        = "gedGsfElectrons" if options['useAOD'] else "slimmedElectrons"
 options['PHOTON_COLL']          = "gedPhotons" if options['useAOD'] else "slimmedPhotons"
 options['SUPERCLUSTER_COLL']    = "reducedEgamma:reducedSuperClusters" ### not used in AOD
-
 options['ELECTRON_CUTS']        = "ecalEnergy*sin(superClusterPosition.theta)>5.0 &&  (abs(-log(tan(superClusterPosition.theta/2)))<2.5)"
 options['SUPERCLUSTER_CUTS']    = "abs(eta)<2.5 &&  et>5.0"
-options['PHOTON_CUTS']          = "(abs(-log(tan(superCluster.position.theta/2)))<=2.5) && pt> 10"
+#options['PHOTON_CUTS']          = "(abs(-log(tan(superCluster.position.theta/2)))<=2.5) && pt> 10"
+
+options['PHOTON_CUTS']          = "(hadronicOverEm() < 0.05) && (chargedHadronIso() < 5.) && (full5x5_r9() > 0.8) && ( (isEB && (nSaturatedXtals>0.)  && (full5x5_sigmaIetaIeta() < 0.0112) ) || (isEB && (nSaturatedXtals<=0.) && (full5x5_sigmaIetaIeta() < 0.0105)) || (isEE && (nSaturatedXtals>0.)  && (full5x5_sigmaIetaIeta() < 0.0300) ) || (isEE && (nSaturatedXtals<=0.) && (full5x5_sigmaIetaIeta() < 0.0280) ) ) && (!passElectronVeto())"
+
 options['ELECTRON_TAG_CUTS']    = "(abs(-log(tan(superCluster.position.theta/2)))<=2.1) && !(1.4442<=abs(-log(tan(superClusterPosition.theta/2)))<=1.566) && pt >= 30.0"
 
 options['MAXEVENTS']            = cms.untracked.int32(varOptions.maxEvents)
